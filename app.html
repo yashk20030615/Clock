@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #e3f2fd;
+            font-family: Arial, sans-serif;
+        }
+
+        .clock-container {
+            background-color: #ffffff;
+            padding: 70px 350px;
+            border-radius: 10px;
+            border: 2px solid #2196f3;
+            text-align: center;
+        }
+
+        #clock {
+            font-size: 60px;
+            font-weight: bold;
+            color: #0d47a1;
+        }
+
+        #date {
+            margin-top: 10px;
+            font-size: 22px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="clock-container">
+        <div id="clock">00:00:00</div>
+        <div id="date">Loading...</div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            document.getElementById("clock").innerText =
+                hours + ":" + minutes + ":" + seconds;
+
+            const options = {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            };
+
+            document.getElementById("date").innerText =
+                now.toLocaleDateString('en-IN', options);
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+
+</body>
+</html>
